@@ -1,0 +1,13 @@
+ Floor: - 
+ Wall: #
+ Exit: O
+ PersonLine: 1
+ PersonColumn: 1
+ ExitLine: 1
+ ExitColumn: 24
+ Lines: 4
+ Columns: 29
+
+ ##########################
+ #------------------------#
+ ##########################

@@ -1,0 +1,3 @@
+LevelsCount: 1
+MaxFileNameLength: 256
+Level_1.txt
