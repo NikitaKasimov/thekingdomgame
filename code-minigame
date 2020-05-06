@@ -1,0 +1,78 @@
+int code()
+{
+
+	srand(time(NULL));
+
+	int digMassOne[5] = {0}, digMassTwo[5] = {-1};
+
+
+	cout << "This is a door with a combination lock. Remember the numbers and put them in ascending order and you can go further." << endl << endl;
+
+	for (int i = 0; i < 5; i++)
+	{
+		digMassOne[i] = rand() % 100;
+		cout << " [" << digMassOne[i] << "] ";
+	}
+	cout << endl;
+
+
+	int temp; 
+
+	
+	for (int i = 0; i < 5 - 1; i++) {
+		for (int j = 0; j < 5 - i - 1; j++) {
+			if (digMassOne[j] > digMassOne[j + 1]) {
+				temp = digMassOne[j];
+				digMassOne[j] = digMassOne[j + 1];
+				digMassOne[j + 1] = temp;
+			}
+		}
+	}
+
+
+	cout << endl << "Press any button, if you are ready!" << endl;
+	_getch();
+	system("cls");
+
+	cout << "Enter the numbers faster!" << endl;
+
+	for (int i = 0; i < 5; i++)
+	{
+
+		cin >> digMassTwo[i];
+		
+	}
+
+	if (digMassTwo[0] < 0)
+	{
+		cout << "You are not worthy. Return to the previous level!" << endl;
+		_getch();
+		return -1;
+	}
+
+	int count = 0;
+
+	for (int i = 0; i < 5; i++)
+	{
+
+		if (digMassOne[i] == digMassTwo[i])
+			++count;
+	
+	}
+
+
+	if (count==5)
+	{
+		cout << "Go to next level!" << endl;
+		_getch();
+		return 0;
+	}
+	else
+	{
+		cout << "You are not worthy. Return to the previous level!" << endl;
+		_getch();
+		return -1;
+	}
+
+	
+}
