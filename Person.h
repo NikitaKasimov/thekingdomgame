@@ -15,6 +15,7 @@ namespace Labyrinth
 
 		Person(int line, int column, int lookRadius, Level* level, char symbol);
 
+		void Save();
 		void Move(int command);
 		void LookAround();
 	};

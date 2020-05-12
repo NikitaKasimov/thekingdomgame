@@ -36,28 +36,29 @@ void Labyrinth::Level::Print()
 		{
 			if (areaMask[i][j])
 			{
-				if ((i != person->line || j != person->column) && !IsExit(i, j))
+
+				if (i == person->line && j == person->column)
 				{
-					cout << area[i][j];
+					cout << person->symbol;
 				}
 				else if (IsExit(i, j))
-					{
-						cout << exitSymbol;
-					}
-					else 
-					{
-						cout << person->symbol;
-					}
+				{
+					cout << exitSymbol;
 				}
 				else
 				{
-					cout << ' ';
+					cout << area[i][j];
 				}
 			}
-			cout << endl;
+			else
+			{
+				cout << ' ';
+			}
 		}
+		cout << endl;
+	}
+	cout << endl << "Room " << number << endl << endl;
 }
-
 
 void Labyrinth::Level::Load(char* filename)
 {
@@ -72,7 +73,7 @@ void Labyrinth::Level::Load(char* filename)
 		>> tmp >> exitLine
 		>> tmp >> exitColumn;
 
-	if (area != 0)
+	if (area != nullptr)
 	{
 		for (int i = 0; i < height; ++i)
 		{
@@ -101,6 +102,11 @@ void Labyrinth::Level::Load(char* filename)
 	{
 		for (int j = 0; j < width; ++j)
 		{
+			/*char s = in.peek();
+			if (s != '#' && s != '-')
+			{
+				__debugbreak();
+			}*/
 			area[i][j] = in.get();
 			areaMask[i][j] = false;
 		}

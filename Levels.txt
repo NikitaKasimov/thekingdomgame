@@ -1,3 +1,12 @@
-LevelsCount: 1
+LevelsCount: 10
 MaxFileNameLength: 256
 Level_1.txt
+Level_2.txt
+Level_3.txt
+Level_4.txt
+Level_5.txt
+Level_6.txt
+Level_7.txt
+Level_8.txt
+Level_9.txt
+Level_10.txt
