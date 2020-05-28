@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Person.h"
 #include <fstream>
 #include <iostream>
 #include <conio.h>
@@ -8,17 +9,45 @@ using namespace Labyrinth;
 using namespace std;
 
 
-int loadSave()
+int loadSaveLevel()
 {
 	int level;
 	ifstream in("Save.txt");
-
 	char tmp[256] = {0};
 
 	in >> tmp >> level;
 	in.close();
 	return level;
+	
 }
+
+bool loadSaveCross()
+{
+	bool cross;
+	ifstream in("Save.txt");
+	char tmp[256] = { 0 };
+
+	in >> tmp >> tmp >> tmp >> cross;
+	in.close();
+	return cross;
+
+}
+
+int loadSaveGold()
+{
+	int gold;
+	ifstream in("Save.txt");
+	char tmp[256] = { 0 };
+
+	in >> tmp >> tmp >> tmp >> tmp >> tmp >> gold;
+	in.close();
+	return gold;
+
+}
+
+
+
+
 
 void control()
 {
@@ -33,10 +62,11 @@ void about()
 {
 	system("cls");
 	cout << "\t \t \t This game is called <Kingdom>." << endl << endl
-		<< "\t \t \t The main goal of the game is to escape from  the \n \t \t \tcellars of the Evil King`s castle." << endl << endl << endl
-		<< "\t \t \t The game was developed by Nikita Kasimov, \n \t \t \t Polina Povaibo and Ilya Matveev." << endl
+		<< "\t\t\tThe main goal of the game is to escape from  the \n \t \t \tcellars of the Evil King`s castle." << endl << endl << endl
+		<< "\t\t\tThe game was developed by Nikita Kasimov, \n \t \t \t Polina Povaibo and Ilya Matveev." << endl
 		<< "\t \t \t Special for D.Y. Fedorov." << endl << endl
-		<< "\t \t \t Saint Petersburg, Bonch, 2020." << endl << endl << endl << endl
+		<< "\t \t  Saint-Petersburg -- Kuznetck -- Zapolyarny" << endl << endl
+		<< "\t \t \t \t Bonch, 2020." << endl << endl << endl << endl
 		<< "\t \t \t Put any button to return to Main Menu" << endl;
 
 	_getch();
@@ -63,7 +93,8 @@ void mainmenu()
 
 int main()
 {
-	int n, level = 1;
+	int n, level = 1, gold = 0;
+	bool cross = 0;
 	while (true)
 	{
 		level = 1;
@@ -78,7 +109,10 @@ int main()
 		case 1:
 			 break;
 		case 2:
-			level = loadSave(); break;
+			level = loadSaveLevel(); 
+			gold = loadSaveGold();
+			cross = loadSaveCross();
+			break;
 		case 3:
 			about();
 			break;
@@ -92,7 +126,7 @@ int main()
 		}
 		Game game;
 
-		game.Initialize(level);
+		game.Initialize(level, cross, gold);
 		game.Run();
 	}
 	return 0;

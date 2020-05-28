@@ -16,7 +16,7 @@ namespace Labyrinth
 
 			Game();
 
-			void Initialize(int inputlevel);
+			void Initialize(int inputlevel, bool inputCross, int inputGold);
 			void Run();
 
 			~Game();

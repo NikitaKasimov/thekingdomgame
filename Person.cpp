@@ -4,16 +4,19 @@
 #include <fstream>
 #include <conio.h>
 
+
 using namespace std;
 
-Labyrinth::Person::Person(int line, int column, int lookRadius, Labyrinth::Level* level, char symbol)
+Labyrinth::Person::Person(int line, int column, int lookRadius, Labyrinth::Level* level, char symbol, bool cross, bool string, int gold)
 {
 	this->line = line;
 	this->column = column;
 	this->level = level;
 	this->lookRadius = lookRadius;
 	this->symbol = symbol;
-
+	this->cross = cross;
+	this->string = string;
+	this->gold = gold;
 }
 
 void Labyrinth:: Person :: Save()
@@ -23,6 +26,8 @@ void Labyrinth:: Person :: Save()
 	if (out.is_open())
 	{
 		out << "Level: " << level->number << endl;
+		out << "Cross: " << string << endl;
+		out << "Gold: " << gold << endl;
 	}
 	cout << "You read the Bible and God saves your soul." << endl;
 	_getch();
@@ -58,7 +63,6 @@ void Labyrinth::Person::Move(int command)
 	default:
 		break;
 	}
-
 }
 
 

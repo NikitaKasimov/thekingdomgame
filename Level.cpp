@@ -7,7 +7,7 @@ using namespace std;
 
 Labyrinth::Level::Level()
 {
-	floorSymbol = wallSymbol = exitSymbol = 0;
+	floorSymbol = wallSymbol = exitSymbol = chestSymbol = 0;
 	number = width = height = personStartColumn = personStartLine = exitColumn = exitLine =  0;
 	area = 0;
 	areaMask = 0;
@@ -28,23 +28,36 @@ bool Labyrinth::Level::IsExit(int line, int column)
 
 }
 
+bool Labyrinth::Level::IsChest(int line, int column)
+{
+	return line == chestLine && column == chestColumn;
+
+}
+
 void Labyrinth::Level::Print()
 {
+	int iString = 0, jString = 0;
 	for (int i = 0; i < height; ++i)
 	{
 		for (int j = 0; j < width; ++j)
 		{
 			if (areaMask[i][j])
 			{
-
 				if (i == person->line && j == person->column)
 				{
 					cout << person->symbol;
+					if (person->string)
+						area[i][j] = '~';
 				}
 				else if (IsExit(i, j))
 				{
 					cout << exitSymbol;
 				}
+				else if (IsChest(i, j))
+				{
+					cout << chestSymbol;
+				}
+
 				else
 				{
 					cout << area[i][j];
@@ -53,11 +66,11 @@ void Labyrinth::Level::Print()
 			else
 			{
 				cout << ' ';
-			}
+			}			
 		}
 		cout << endl;
 	}
-	cout << endl << "Room " << number << endl << endl;
+	cout << endl << "Room " << number << endl << "Gold: " << person->gold << endl;
 }
 
 void Labyrinth::Level::Load(char* filename)
@@ -68,10 +81,13 @@ void Labyrinth::Level::Load(char* filename)
 	in >> tmp >> floorSymbol
 		>> tmp >> wallSymbol
 		>> tmp >> exitSymbol
+		>> tmp >> chestSymbol
 		>> tmp >> personStartLine
 		>> tmp >> personStartColumn
 		>> tmp >> exitLine
-		>> tmp >> exitColumn;
+		>> tmp >> exitColumn
+		>> tmp >> chestLine
+		>> tmp >> chestColumn;
 
 	if (area != nullptr)
 	{

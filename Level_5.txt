@@ -1,10 +1,13 @@
 Floor: - 
 Wall: #
-Exit: O
+Exit: E
+Chest: C
 PersonLine: 13
 PersonColumn: 1
 ExitLine: 13
 ExitColumn: 34
+ChestLine: 1
+ChestColumn: 7
 Lines: 15
 Columns: 36
 ####################################

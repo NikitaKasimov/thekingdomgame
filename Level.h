@@ -9,7 +9,7 @@ namespace Labyrinth
 		char floorSymbol;
 		char wallSymbol;
 		char exitSymbol;
-
+		char chestSymbol;
 
 		int number;
 		int width;
@@ -25,6 +25,8 @@ namespace Labyrinth
 		int exitLine;
 		int exitColumn;
 
+		int chestLine;
+		int chestColumn;
 
 		Level();
 
@@ -33,6 +35,7 @@ namespace Labyrinth
 
 		bool CanMove(int line, int column);
 		bool IsExit(int line, int column);
+		bool IsChest(int line, int column);
 		~Level();
 
 	};
